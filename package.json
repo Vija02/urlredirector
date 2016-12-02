@@ -1,0 +1,25 @@
+{
+  "name": "urlredirector",
+  "version": "1.0.0",
+  "description": "Simple Url Redirector",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vija02/urlredirector.git"
+  },
+  "author": "Vija02",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Vija02/urlredirector/issues"
+  },
+  "homepage": "https://github.com/Vija02/urlredirector#readme",
+  "dependencies": {
+    "bookshelf": "^0.10.2",
+    "knex": "^0.12.6",
+    "pg": "^6.1.0",
+    "pgsql": "^1.0.0"
+  }
+}
