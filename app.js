@@ -1,6 +1,9 @@
 var server = require('./lib/server'),
 	controller = require('./lib/controller');
 
+// Env file
+require('dotenv').config();
+
 // Setup routes
 require('./lib/router')(server, controller);
 
