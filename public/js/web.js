@@ -60,15 +60,24 @@ $(function() {
 	
 	$(".submit").on('click', function() {
 		if($(".url").val() != "" && $(".link").val() != ""){
-			copyTextToClipboard("url.rollingmagnet.com/" + $(".url").val());
+			var url = $(".url").val();
+			var link = $(".link").val();
 			
-			//TODO: make the link clickable
-			$(".success").text("Link created at url.rollingmagnet.com/" + $(".url").val() + " it's automatically copied")
+			copyTextToClipboard("url.rollingmagnet.com/" + url);
+			
+			// TODO: make the link clickable
+			$(".success").text("Link created at url.rollingmagnet.com/" + url + " it's automatically copied")
 			$(".success").show();
 			
-			// TODO: Do ajax
+			$.ajax({
+			  method: "POST",
+			  url: "/createLink",
+			  data: { url: url, link: link }
+			}).done(function( msg ) {
+				// TODO: Do checks
+			});
 		}else{
-			//TODO: need to put something
+			// TODO: Error, need to put something message
 		}
 	});
 });
