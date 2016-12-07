@@ -56,31 +56,44 @@ function copyTextToClipboard(text) {
 }
 
 $(function() {
-    $(".success").hide();
-	
+  $(".success").hide();
+
 	$(".submit").on('click', function() {
-		if($(".url").val() != "" && $(".link").val() != ""){
-			var url = $(".url").val();
-			var link = $(".link").val();
-			
-			copyTextToClipboard("url.rollingmagnet.com/" + url);
-			
-			// TODO: make the link clickable
-			$(".success").text("Link created at url.rollingmagnet.com/" + url + " it's automatically copied")
-			$(".success").show();
-			
+
+    // Get variables
+    var url = $(".url").val();
+    var link = $(".link").val();
+
+		if(url != "" && link != "" && isValidURL(`https://url.rollingmagnet.com/${url}`) && isValidURL(link)){
+      // If url is valid, send data
 			$.ajax({
 			  method: "POST",
 			  url: "/createLink",
 			  data: { url: url, link: link }
 			}).done(function( msg ) {
-				// TODO: Do checks
+        if(msg == "ok"){ // If all good
+          copyTextToClipboard("url.rollingmagnet.com/" + url);
+    			// TODO: make the link clickable
+    			$(".success-link").text("url.rollingmagnet.com/" + url);
+          $(".success-link").attr("href", "url.rollingmagnet.com/" + url);
+    			$(".success").show();
+
+        }else if(msg == "duplicate"){ // If the url have been used before
+          toastr.error('The URL have been used before. Please change into another URL', 'Error!');
+        }else if(msg == "not-valid"){
+          toastr.error('One or more of the URL you entered are invalid', 'Error!');
+        }else{
+          toastr.error('Something went wrong, please contact the administrator. Thanks!', 'Error!')
+        }
 			});
 		}else{
-			// TODO: Error, need to put something message
+			toastr.error('One or more of the URL you entered are invalid', 'Error!');
 		}
 	});
 });
 
-
-
+function isValidURL(str) {
+   var a  = document.createElement('a');
+   a.href = str;
+   return (a.host && a.host != window.location.host);
+}
