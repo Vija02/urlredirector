@@ -64,7 +64,7 @@ $(function() {
     var url = $(".url").val();
     var link = $(".link").val();
 
-		if(url != "" && link != "" && isValidURL(`https://url.rollingmagnet.com/${url}`) && isValidURL(link)){
+		if(url != "" && link != ""){
       // If url is valid, send data
 			$.ajax({
 			  method: "POST",
