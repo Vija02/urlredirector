@@ -59,10 +59,11 @@ $(function() {
   $(".success").hide();
 
 	$(".submit").on('click', function() {
-    copyTextToClipboard("url.rollingmagnet.com/" + url);
     // Get variables
     var url = $(".url").val();
     var link = $(".link").val();
+    
+    copyTextToClipboard("url.rollingmagnet.com/" + url);
 
 		if(url != "" && link != ""){
       // If url is valid, send data
