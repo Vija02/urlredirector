@@ -59,7 +59,7 @@ $(function() {
   $(".success").hide();
 
 	$(".submit").on('click', function() {
-
+    copyTextToClipboard("url.rollingmagnet.com/" + url);
     // Get variables
     var url = $(".url").val();
     var link = $(".link").val();
@@ -72,12 +72,9 @@ $(function() {
 			  data: { url: url, link: link }
 			}).done(function( msg ) {
         if(msg == "ok"){ // If all good
-          copyTextToClipboard("url.rollingmagnet.com/" + url);
-    			// TODO: make the link clickable
     			$(".success-link").text("url.rollingmagnet.com/" + url);
           $(".success-link").attr("href", "https://url.rollingmagnet.com/" + url);
     			$(".success").show();
-
         }else if(msg == "duplicate"){ // If the url have been used before
           toastr.error('The URL have been used before. Please change into another URL', 'Error!');
         }else if(msg == "not-valid"){
