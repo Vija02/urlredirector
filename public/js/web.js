@@ -75,7 +75,7 @@ $(function() {
           copyTextToClipboard("url.rollingmagnet.com/" + url);
     			// TODO: make the link clickable
     			$(".success-link").text("url.rollingmagnet.com/" + url);
-          $(".success-link").attr("href", "url.rollingmagnet.com/" + url);
+          $(".success-link").attr("href", "https://url.rollingmagnet.com/" + url);
     			$(".success").show();
 
         }else if(msg == "duplicate"){ // If the url have been used before
